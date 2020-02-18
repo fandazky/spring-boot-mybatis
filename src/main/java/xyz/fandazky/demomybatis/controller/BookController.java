@@ -1,12 +1,9 @@
 package xyz.fandazky.demomybatis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import xyz.fandazky.demomybatis.dao.BookMapper;
+import org.springframework.web.bind.annotation.*;
 import xyz.fandazky.demomybatis.model.Book;
+import xyz.fandazky.demomybatis.service.BookService;
 
 import java.util.List;
 
@@ -15,15 +12,30 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookMapper bookMapper;
+    private BookService bookService;
+
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        return bookService.createBook(book);
+    }
 
     @GetMapping
     public List<Book> getAllBooks() {
-        return bookMapper.findAll();
+        return bookService.getAllBooks();
+    }
+
+    @GetMapping("/cached")
+    public List<Book> getCachedBooks() {
+        return bookService.getCachedBooks();
+    }
+
+    @GetMapping("/filter")
+    public List<Book> getBooksByTitle(@RequestParam String title) {
+        return bookService.getBooksByTitle(title);
     }
 
     @GetMapping("/{genre}")
     public List<Book> getBooksByGenre(@PathVariable String genre) {
-        return bookMapper.findByGenre(genre);
+        return bookService.getBooksByGenre(genre);
     }
 }
