@@ -75,6 +75,6 @@ public class BookService {
 
         Configuration config = configurationMapper.getConfigByKey(CACHE_KEY_CONFIG);
         TTL.set(Long.valueOf(config.getConfigValue()));
-        log.info("Already updated cache!!");
+        log.info("Cache already updated!!");
     }
 }
