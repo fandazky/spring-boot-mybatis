@@ -8,7 +8,6 @@ import xyz.fandazky.demomybatis.dao.BookMapper;
 import xyz.fandazky.demomybatis.dao.ConfigurationMapper;
 import xyz.fandazky.demomybatis.model.Book;
 import xyz.fandazky.demomybatis.model.Configuration;
-import xyz.fandazky.demomybatis.utility.CacheUpdateScheduler;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
 
-    private static final Logger log = LoggerFactory.getLogger(CacheUpdateScheduler.class);
+    private static final Logger log = LoggerFactory.getLogger(BookService.class);
     private static final String CACHE_KEY_CONFIG = "cache_ttl";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
